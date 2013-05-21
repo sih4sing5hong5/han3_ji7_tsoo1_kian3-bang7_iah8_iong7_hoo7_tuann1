@@ -1,24 +1,6 @@
-function ReverseDisplay(d) {
-	if (document.getElementById(d).style.display == "none") {
-		document.getElementById(d).style.display = "block";
-	} else {
-		document.getElementById(d).style.display = "none";
-	}
-}
-function change(id) {
-	//var aa = document.getElementById(id).childNodes;
-	// alert(document.getElementById(id).innerHTML);
-	tshue7tsoo2ji7(document.getElementById(id));
-	// alert(document.getElementById(id).childNodes.length);
-	// alert(document.getElementById(id).childNodes[0].nodeValue);
-	// alert(document.getElementById(id).childNodes[3].nodeName);// a
-	// alert(document.getElementById(id).childNodes[3].innerHTML);
-}
 function tshue7tsoo2ji7(element) {
-	// element.style.fontSize='7px';
 	var fontFamily = '宋體', fontSize = '16px', fontWeight = '400';
-
-	if (window.getComputedStyle) {
+	if (window.getComputedStyle && window.getComputedStyle(element)) {
 		fontFamily = window.getComputedStyle(element).fontFamily;
 		fontSize = window.getComputedStyle(element).fontSize;
 		fontWeight = window.getComputedStyle(element).fontWeight;
@@ -27,29 +9,32 @@ function tshue7tsoo2ji7(element) {
 		fontSize = element.currentStyle.fontSize;
 		fontWeight = element.currentStyle.fontWeight;
 	}
-	// alert(fontFamily+" "+fontSize+" "+fontWeight);
 
-	var e7ka1uan5soh4 = element.childNodes;
-	var uan5soo3tng5too7 = e7ka1uan5soh4.length;
-	var ELEMENT_NODE = 1;
-	var TEXT_NODE = 3;
-	for ( var i = uan5soo3tng5too7 - 1; i >= 0; i--) {
-		/*
-		 * alert(i+" "+aa[i].nodeType+" Value='"+aa[i].nodeValue+"' html='"
-		 * +aa[i].innerHTML+"' "+(ELEMENT_NODE));//
-		 */
-		if (e7ka1uan5soh4[i].nodeType === ELEMENT_NODE) {
-			tshue7tsoo2ji7(e7ka1uan5soh4[i]);
-		}
-		if (e7ka1uan5soh4[i].nodeType === TEXT_NODE) {
-			var targetNode = e7ka1uan5soh4[i];
-			var newArray = ka7ji7uann7tiau7(targetNode, fontFamily, fontSize,
-					fontWeight);
-			if (newArray.length > 0) {
-				for ( var j = 0; j < newArray.length; ++j)
-					element.insertBefore(newArray[j], targetNode);
-				element.removeChild(targetNode);
+	if (element.hasChildNodes()) {
+		var ELEMENT_NODE = 1;
+		var TEXT_NODE = 3;
+		var targetNode = element.firstChild;
+		while (targetNode) {
+			var nextNode = targetNode.nextSibling;
+			// alert("還在" + element + "的" + i + " " + targetNode.nodeType
+			// + " Value='" + targetNode.nodeValue + "' html='"
+			// + targetNode.innerHTML + "' " + (ELEMENT_NODE)
+			// + " nodeName=" + targetNode.nodeName);//
+
+			if (targetNode.nodeType === ELEMENT_NODE) {
+				if (targetNode.nodeName != 'SCRIPT') {
+					tshue7tsoo2ji7(targetNode);
+				}
+			} else if (targetNode.nodeType === TEXT_NODE) {
+				var newArray = ka7ji7uann7tiau7(targetNode, fontFamily,
+						fontSize, fontWeight);
+				if (newArray.length > 0) {
+					for ( var j = 0; j < newArray.length; ++j)
+						element.insertBefore(newArray[j], targetNode);
+					element.removeChild(targetNode);
+				}
 			}
+			targetNode = nextNode;
 		}
 	}
 }
