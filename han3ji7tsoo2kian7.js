@@ -94,3 +94,11 @@ function kuah4tin7ji7the2(fontFamily, fontWeight) {
 		ji7the2 += '粗體';
 	return ji7the2;
 }
+function pian3tng2tsoo2ji7sik4() {
+	var tsoo2ji7too5 = document.getElementsByClassName('tsoo2ji3');
+	for ( var i = tsoo2ji7too5.length - 1; i >= 0; --i) {
+		var bun5ji7 = document.createTextNode(tsoo2ji7too5[i].alt);
+		var parent = tsoo2ji7too5[i].parentNode;
+		parent.replaceChild(bun5ji7, tsoo2ji7too5[i]);
+	}
+}
