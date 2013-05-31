@@ -62,6 +62,7 @@ function ka7ji7uann7tiau7(textNode, fontFamily, fontSize, fontWeight) {
 			img.setAttribute('src', 'http://localhost:8080/' + ji7the2 + '/'
 					+ tsoo2ji3 + '.png');
 			img.setAttribute('alt', tsoo2ji3);
+			img.setAttribute('title', tsoo2ji3);
 			img.setAttribute('height', fontSize);
 			newArray[newArray.length] = img;// */
 			start = i;
