@@ -1,4 +1,11 @@
-function tshue7tsoo2ji7(element) {
+function tsoo2han3ji7(beh4tshu2li2bo5) {
+	tshue7tsoo2ji7(document.getElementsByTagName('body')[0],beh4tshu2li2bo5);
+}
+function long2ai2tshu2li2(ji7) {
+	return true;
+}
+function tshue7tsoo2ji7(element, beh4tshu2li2bo5) {
+	beh4tshu2li2bo5 = beh4tshu2li2bo5 || si7tsoo2hap8bo5;
 	var fontFamily = '宋體', fontSize = '16px', fontWeight = '400';
 	if (window.getComputedStyle && window.getComputedStyle(element)) {
 		fontFamily = window.getComputedStyle(element).fontFamily;
@@ -23,11 +30,11 @@ function tshue7tsoo2ji7(element) {
 
 			if (targetNode.nodeType === ELEMENT_NODE) {
 				if (targetNode.nodeName != 'SCRIPT') {
-					tshue7tsoo2ji7(targetNode);
+					tshue7tsoo2ji7(targetNode,beh4tshu2li2bo5);
 				}
 			} else if (targetNode.nodeType === TEXT_NODE) {
 				var newArray = ka7ji7uann7tiau7(targetNode, fontFamily,
-						fontSize, fontWeight);
+						fontSize, fontWeight,beh4tshu2li2bo5);
 				if (newArray.length > 0) {
 					for ( var j = 0; j < newArray.length; ++j)
 						element.insertBefore(newArray[j], targetNode);
@@ -38,16 +45,16 @@ function tshue7tsoo2ji7(element) {
 		}
 	}
 }
-function ka7ji7uann7tiau7(textNode, fontFamily, fontSize, fontWeight) {
+function ka7ji7uann7tiau7(textNode, fontFamily, fontSize, fontWeight,beh4tshu2li2bo5) {
 	var ji7the2 = kuah4tin7ji7the2(fontFamily, fontWeight);
 	var newArray = new Array();
 	var start = 0;
 	for ( var i = 0; i < textNode.nodeValue.length; ++i) {
-		if (si7tsoo2hap8bo5(textNode.nodeValue[i])) {
+		if (beh4tshu2li2bo5(textNode.nodeValue[i])) {
 			var middle = i;
-			var num = -1;
-			for (++i; i < textNode.nodeValue.length && num < 1; ++i) {
-				if (si7tsoo2hap8bo5(textNode.nodeValue[i])) {
+			var num = 0;
+			for (i; i < textNode.nodeValue.length && num < 1; ++i) {
+				if (beh4tshu2li2bo5(textNode.nodeValue[i])) {
 					num--;
 				} else {
 					num++;
