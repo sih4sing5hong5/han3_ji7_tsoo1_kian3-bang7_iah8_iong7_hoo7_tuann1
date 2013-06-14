@@ -1,30 +1,3 @@
 img.tsoo2ji3 {
 	vertical-align: text-top;
 }
-
-@font-face {
-	font-family: "ji7the2"; /** 這個是設定字型的名稱 **/
-	/*src: url('/anf/font/tradegothic-bold-webfont.eot');*/
-	/** 設定IE使用的EOT字型檔位置 **/
-	src:local('全字庫正宋體'), /*url('/anf/font/tradegothic-bold-webfont.woff') format('woff'),*/
-	url('https://nol.cs.nctu.edu.tw/~chhsueh/TW-Kai-98_1.ttf')
-	format(
-	'truetype'
-	) /*,url('a.ttf')
-	format(
-	'truetype'
-	) ;*/;/*,url('/anf/font/tradegothic-bold-webfont.svg#webfontmlgY0et7')
-		format('svg'); /** 設定firefox、chrome...等使用的字型檔放置的地方 **/
-	
-	
-	 /** 其餘的css設定 **/;
-}
-
-html {
-	font-family: "ji7the2";
-}
-
-body {
-	font-family: "ji7the2";
-	/*全字庫正宋體*/
-}

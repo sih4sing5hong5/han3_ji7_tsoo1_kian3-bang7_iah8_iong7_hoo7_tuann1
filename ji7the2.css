@@ -1,0 +1,33 @@
+@font-face {
+	font-family: "ji7the2"; /** 這個是設定字型的名稱 **/
+	src: url('a-5.eot');
+	/** 設定IE使用的EOT字型檔位置 **/
+	src: /*local('全字庫正宋體'), */url('a-5.eot?#iefix') format('embedded-opentype'),
+		url('a-5.woff') format('woff'), url('a-5.otf') format('truetype'),url('a-5.otf') format('opentype'),
+		url('a-5.svg') format('svg') /** 其餘的css設定 **/;
+}
+
+@font-face {
+	font-family: "ji7the2-2"; /** 這個是設定字型的名稱 **/
+	src: url('TW-Kai-98_1.eot');
+	/** 設定IE使用的EOT字型檔位置 **/
+	src: /*local('全字庫正楷體'), /*local('全字庫正宋體'),*/
+		url('TW-Kai-98_1.eot?#iefix') format(
+		'embedded-opentype'),
+		url('TW-Kai-98_1.woff') format(
+		'woff');
+		 font-weight: normal;
+font-style: normal;
+}
+/*
+html {
+	font-family: "ji7the2";
+}*/
+body {
+	font-family: "ji7the2-2";
+	/*全字庫正宋體*/
+}
+span {
+	font-family: "ji7the2-2";
+	/*全字庫正宋體*/
+}
