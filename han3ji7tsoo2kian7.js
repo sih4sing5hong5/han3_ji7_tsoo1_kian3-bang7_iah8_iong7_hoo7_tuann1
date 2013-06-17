@@ -54,7 +54,7 @@ function ka7ji7uann7tiau7(textNode, fontFamily, fontSize, fontWeight,beh4tshu2li
 			var middle = i;
 			var num = 0;
 			for (i; i < textNode.nodeValue.length && num < 1; ++i) {
-				if (beh4tshu2li2bo5(textNode.nodeValue[i])) {
+				if (si7tsoo2hap8bo5(textNode.nodeValue[i])) {
 					num--;
 				} else {
 					num++;
