@@ -1,0 +1,150 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="./han3ji7tsoo2kian7.js"></script>
+<link rel="stylesheet" type="text/css" href="./han3ji7tsoo2kian7.css">
+<script type="text/javascript">
+	function insertAtCursor(myField, myValue) {
+		//IE support
+		if (document.selection) {
+			myField.focus();
+			sel = document.selection.createRange();
+			sel.text = myValue;
+		}
+		//MOZILLA and others
+		else if (myField.selectionStart || myField.selectionStart == '0') {
+			var startPos = myField.selectionStart;
+			var endPos = myField.selectionEnd;
+			myField.value = myField.value.substring(0, startPos) + myValue
+					+ myField.value.substring(endPos, myField.value.length);
+		} else {
+			myField.value += myValue;
+		}
+	}
+</script>
+
+
+<script type="text/javascript">
+	var getCharPosition = (function() {
+
+		function getSel() {
+			var sel = null;
+			if (typeof document.selection != "undefined" && document.selection
+					&& document.selection.type == "Text") {
+				sel = document.selection;
+			} else if (window.getSelection
+					&& window.getSelection().rangeCount > 0) {
+				sel = window.getSelection();
+			}
+			return sel;
+		}
+
+		function createRangeFromSel(sel) {
+			var rng = null;
+			if (sel.createRange) {
+				rng = sel.createRange();
+			} else if (sel.getRangeAt) {
+				rng = sel.getRangeAt(0);
+				if (rng.toString() == "")
+					rng = null;
+			}
+			return rng;
+		}
+
+		return function(el) {
+			var sel = getSel(), rng, r2, i = -1;
+			if (sel) {
+				rng = createRangeFromSel(sel);
+				if (rng) {
+
+					if (rng.parentElement) {
+						if (rng.parentElement() == el) {
+							r2 = document.body.createTextRange();
+							r2.moveToElementText(el);
+							r2.collapse(true);
+							r2.setEndPoint("EndToStart", rng);
+							i = r2.text.length;
+						}
+					} else {
+						if (rng.startContainer
+								&& rng.endContainer
+								&& rng.startContainer == rng.endContainer
+								&& rng.startContainer == rng.commonAncestorContainer
+								&& rng.commonAncestorContainer.parentNode == el) {
+
+							//make sure your DIV does not have any inner element,
+							//otherwise more code is required in order to filter
+							//text nodes and count chars
+
+							i = rng.startOffset;
+						}
+					}
+				}
+			}
+			return i;
+		};
+
+	})();
+
+	function prepare(el) {
+		if (el.normalize) {
+			el.normalize();
+		}
+	}
+	function aa() {
+		//alert(document.selection);
+		var sel = window.getSelection();
+		//alert(a);
+		if (sel.rangeCount > 0) {
+			var range = sel.getRangeAt(0);
+			alert(sel);
+			alert(range.startOffset + ' ' + range.endOffset);
+
+			//range.deleteContents();
+			//range.parentNode.replaceChild(document.createTextNode('aaa'),range);
+			var newNode = document.createTextNode('aaa');
+			//range.insertNode();
+			var tag = "Ihc";
+			var selectedText = range.toString();
+			range.deleteContents();
+			range.insertNode(newNode);
+			range.setStartAfter(newNode);
+			range.setEndAfter(newNode);
+
+		}
+	}
+</script>
+
+
+</head>
+<body>
+	<a href="javascript:tshue7tsoo2ji7(document.getElementById('ket4ko2'))">X!!!!!D</a>
+	<a href="javascript:pian3tng2tsoo2ji7sik4()">X@@D</a>
+	<a
+		href="javascript:insertAtCursor(document.getElementById('ket4ko2'),'aa')">＠＠＠＠＠</a>
+	<a href="javascript:aa()">＠＠＠2＠＠</a>
+
+	<br />
+	<br /> onmouseup="alert(getCharPosition(this));"
+	onmousedown="prepare(this)"
+	<div id="ket4ko2" contenteditable="true">
+		sd你好sssZsZaas一三四變<font face="全字庫正楷體">變</font><font face="全字庫正宋體">變</font>⿱⿰⿰糹言糹攵⿰矛⿱攵力變<b>變⿱木⿰木木森s
+		</b><a href=".">X<b>D</b></a><br />
+	</div>
+	<textarea>XDD</textarea>
+	﻿
+	<form name="myform">
+		Type anything you like: <input type="text" name="typing"
+			onChange=""
+			onkeyup="document.myform.haha.value=(this.value) ;"
+			onkeydown="document.myform.haha2.value=(this.value) ;"
+			onPaste="alert('2') ; this.select()"
+			oncut="alert('2') ; this.select()"
+			oninput=""> <input name="haha"
+			type="button" value="Click me to see what you have typed"
+			onClick="alert(this.form.typing.value)"> <input name="haha2"
+			type="text" value="Click me to see what you have typed"
+			onClick="alert(this.form.typing.value)">
+	</form>
+</body>
+</html>
