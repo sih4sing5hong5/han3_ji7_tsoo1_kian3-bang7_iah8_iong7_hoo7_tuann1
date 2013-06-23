@@ -97,12 +97,15 @@
 		//alert(a);
 		if (sel.rangeCount > 0) {
 			var range = sel.getRangeAt(0);
-			alert(sel);
-			alert(range.startOffset + ' ' + range.endOffset);
+			alert(range.startContainer.parentNode.tagName);
+			alert(range.startContainer.tagName);
+			//alert(sel);
+			//alert(range.startOffset + ' ' + range.endOffset);
 
 			//range.deleteContents();
 			//range.parentNode.replaceChild(document.createTextNode('aaa'),range);
-			var newNode = document.createTextNode('aaa');
+			var newNode = document.createTextNode(document
+					.getElementById("su1jip8").value);
 			//range.insertNode();
 			var tag = "Ihc";
 			var selectedText = range.toString();
@@ -114,37 +117,141 @@
 		}
 	}
 </script>
+<script type="text/javascript">
+	function getInputSelection(el) {
+		var start = 0, end = 0, normalizedValue, range, textInputRange, len, endRange;
 
+		if (typeof el.selectionStart == "number"
+				&& typeof el.selectionEnd == "number") {
+			start = el.selectionStart;
+			end = el.selectionEnd;
+		} else {
+			range = document.selection.createRange();
+
+			if (range && range.parentElement() == el) {
+				len = el.value.length;
+				normalizedValue = el.value.replace(/\r\n/g, "\n");
+
+				// Create a working TextRange that lives only in the input
+				textInputRange = el.createTextRange();
+				textInputRange.moveToBookmark(range.getBookmark());
+
+				// Check if the start and end of the selection are at the very end
+				// of the input, since moveStart/moveEnd doesn't return what we want
+				// in those cases
+				endRange = el.createTextRange();
+				endRange.collapse(false);
+
+				if (textInputRange.compareEndPoints("StartToEnd", endRange) > -1) {
+					start = end = len;
+				} else {
+					start = -textInputRange.moveStart("character", -len);
+					start += normalizedValue.slice(0, start).split("\n").length - 1;
+
+					if (textInputRange.compareEndPoints("EndToEnd", endRange) > -1) {
+						end = len;
+					} else {
+						end = -textInputRange.moveEnd("character", -len);
+						end += normalizedValue.slice(0, end).split("\n").length - 1;
+					}
+				}
+			}
+		}
+
+		return {
+			start : start,
+			end : end
+		};
+	}
+
+	function offsetToRangeCharacterMove(el, offset) {
+		return offset - (el.value.slice(0, offset).split("\r\n").length - 1);
+	}
+
+	function setInputSelection(el, startOffset, endOffset) {
+		if (typeof el.selectionStart == "number"
+				&& typeof el.selectionEnd == "number") {
+			el.selectionStart = startOffset;
+			el.selectionEnd = endOffset;
+		} else {
+			var range = el.createTextRange();
+			var startCharMove = offsetToRangeCharacterMove(el, startOffset);
+			range.collapse(true);
+			if (startOffset == endOffset) {
+				range.move("character", startCharMove);
+			} else {
+				range.moveEnd("character", offsetToRangeCharacterMove(el,
+						endOffset));
+				range.moveStart("character", startCharMove);
+			}
+			range.select();
+		}
+	}
+	function addTextonInputSelection(field, value) {
+		var sel = getInputSelection(field);
+		//field.value = 'some_new_value';
+		insertAtCursor(field, value)
+		setInputSelection(field, sel.start, sel.end);
+	}
+</script>
+<script type="text/javascript">
+	function kiam2tsa1(textInput) {
+		//alert(textInput.value);
+		var num = 0;
+		var i = 0;
+		for (; i < textInput.value.length && num < 1; ++i) {
+			if (si7tsoo2hap8bo5(textInput.value[i])) {
+				num--;
+			} else {
+				num++;
+			}
+		}
+		//alert(i);
+		if (i != textInput.value.length) {
+			var tshah4 = textInput.value.substring(0, i);
+			var tshun1 = textInput.value.substring(i);
+			textInput.value=tshun1;
+			alert(tshah4);
+			aa(tshah4);
+		}
+	}
+</script>
 
 </head>
-<body>
+<body
+	onload="javascript:setInputSelection(document.getElementById('ket4ko2'),0,0);document.getElementById('ket4ko2').focus();")>
+	﻿
+	<form name="myform">
+		Type anything you like: <input type="text" name="typing" id="su1jip8"
+			value="XDD2" onChange=""
+			onkeyup="document.myform.haha.value=(this.value) ;"
+			onkeydown="kiam2tsa1(document.getElementById('su1jip8'));document.myform.haha2.value=(this.value) ;"
+			onPaste="alert('2') ; this.select()"
+			oncut="alert('2') ; this.select()" oninput=""> <input
+			name="haha" type="button" value="Click me to see what you have typed"
+			onClick="alert(this.form.typing.value)"> <input name="haha2"
+			type="text" value="Click me to see what you have typed"
+			onClick="alert(this.form.typing.value)"> <input name="D"
+			type="button" value="D"
+			onclick="javascript:insertAtCursor(document.getElementById('su1jip8'),'D')">
+		<input name="E" type="button" value="E"
+			onclick="javascript:addTextonInputSelection(document.getElementById('su1jip8'),'E')">
+	</form>
 	<a href="javascript:tshue7tsoo2ji7(document.getElementById('ket4ko2'))">X!!!!!D</a>
 	<a href="javascript:pian3tng2tsoo2ji7sik4()">X@@D</a>
 	<a
 		href="javascript:insertAtCursor(document.getElementById('ket4ko2'),'aa')">＠＠＠＠＠</a>
-	<a href="javascript:aa()">＠＠＠2＠＠</a>
+	<a href="javascript:aa('@@')">＠＠＠2＠＠</a>
 
 	<br />
 	<br /> onmouseup="alert(getCharPosition(this));"
 	onmousedown="prepare(this)"
-	<div id="ket4ko2" contenteditable="true">
+	<div id="ket4ko2" contenteditable="true"
+		style="border: 1px solid #000000">
 		sd你好sssZsZaas一三四變<font face="全字庫正楷體">變</font><font face="全字庫正宋體">變</font>⿱⿰⿰糹言糹攵⿰矛⿱攵力變<b>變⿱木⿰木木森s
 		</b><a href=".">X<b>D</b></a><br />
 	</div>
 	<textarea>XDD</textarea>
-	﻿
-	<form name="myform">
-		Type anything you like: <input type="text" name="typing"
-			onChange=""
-			onkeyup="document.myform.haha.value=(this.value) ;"
-			onkeydown="document.myform.haha2.value=(this.value) ;"
-			onPaste="alert('2') ; this.select()"
-			oncut="alert('2') ; this.select()"
-			oninput=""> <input name="haha"
-			type="button" value="Click me to see what you have typed"
-			onClick="alert(this.form.typing.value)"> <input name="haha2"
-			type="text" value="Click me to see what you have typed"
-			onClick="alert(this.form.typing.value)">
-	</form>
+
 </body>
 </html>
