@@ -91,9 +91,10 @@
 			el.normalize();
 		}
 	}
+	document.getElementById('ket4ko2').focus();
 	huan7ui5 = window.getSelection().getRangeAt(0);
 	function save() {
-		document.getElementById('su1jip8').value += 'a';
+	//	document.getElementById('su1jip8').value += 'a';
 		huan7ui5 = window.getSelection().getRangeAt(0);
 	}
 	function aa(ji7) {
@@ -233,7 +234,7 @@
 
 </head>
 <body
-	onload="javascript:setInputSelection(document.getElementById('ket4ko2'),0,0);document.getElementById('ket4ko2').focus();")>
+	onload="javascript:document.getElementById('ket4ko2').focus();save();javascript:document.getElementById('su1jip8').focus()">
 	﻿
 	<form name="myform">
 		Type anything you like: <input type="text" name="typing" id="su1jip8"
@@ -250,6 +251,10 @@
 			onclick="javascript:insertAtCursor(document.getElementById('su1jip8'),'D')">
 		<input name="E" type="button" value="E"
 			onclick="javascript:addTextonInputSelection(document.getElementById('su1jip8'),'E')">
+		<input name="⿰" type="button" value="⿰"
+			onclick="javascript:addTextonInputSelection(document.getElementById('su1jip8'),'⿰')">
+		<input name="⿱" type="button" value="⿱"
+			onclick="javascript:addTextonInputSelection(document.getElementById('su1jip8'),'⿱')；document.getElementById('su1jip8').focus()">
 	</form>
 	<a href="javascript:tshue7tsoo2ji7(document.getElementById('ket4ko2'))">X!!!!!D</a>
 	<a href="javascript:pian3tng2tsoo2ji7sik4()">X@@D</a>
