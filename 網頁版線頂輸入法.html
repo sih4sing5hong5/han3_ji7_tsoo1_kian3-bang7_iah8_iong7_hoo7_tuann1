@@ -4,274 +4,21 @@
 <script type="text/javascript" src="./han3ji7tsoo2kian7.js"></script>
 <link rel="stylesheet" type="text/css" href="./han3ji7tsoo2kian7.css">
 
-<script type="text/javascript">
-	var su1jip8, ket4ko2;
-	var huan7ui5;
-	function it4khai1si2() {
-		su1jip8 = document.getElementById('su1jip8');
-		ket4ko2 = document.getElementById('ket4ko2');
-		ket4ko2.focus();
-		ki3lok8huan7ui5();
-		su1jip8.focus();
-		set4ting7too5(' ', ' ');
-		setInterval("hian2si7too5()", 500);
-	}
-	function ki3lok8huan7ui5() {
-		var sin1huan7ui5 = window.getSelection().getRangeAt(0);
-		//alert("t1="+sin1huan7ui5.startContainer.parentNode.tagName);
-		//alert("t2="+sin1huan7ui5.startContainer.parentNode.id);
-		//alert("t3="+sin1huan7ui5.startContainer.tagName);
-		//alert("t4="+sin1huan7ui5.startContainer.id);
-		if (sin1huan7ui5.startContainer.id == 'ket4ko2'
-				|| sin1huan7ui5.startContainer.parentNode.id == 'ket4ko2')
-			huan7ui5 = sin1huan7ui5;
-	}
-	function set4ting7too5(te7it4e5too5, te7ji7e5too5) {
-		var too5it4 = document.getElementById("hian2si7too5it4");
-		var too5ji7 = document.getElementById("hian2si7too5ji7");
-		too5it4.src = tsoo2ji7ting5sik4 + '宋體/' + te7it4e5too5 + '.png';
-		too5ji7.src = tsoo2ji7ting5sik4 + '宋體/' + te7ji7e5too5 + '.png';
-	}
-	function hian2si7too5() {
-		var too5it4 = document.getElementById("hian2si7too5it4");
-		var too5ji7 = document.getElementById("hian2si7too5ji7");
-		if (too5it4.style.display == "none") {
-			too5it4.style.display = "block";
-			too5ji7.style.display = "none";
-		} else {
-			too5ji7.style.display = "block";
-			too5it4.style.display = "none";
-		}
-	}
-</script>
-
-<script type="text/javascript">
-	function insertAtCursor(myField, myValue) {
-		//IE support
-		if (document.selection) {
-			myField.focus();
-			sel = document.selection.createRange();
-			sel.text = myValue;
-		}
-		//MOZILLA and others
-		else if (myField.selectionStart || myField.selectionStart == '0') {
-			var startPos = myField.selectionStart;
-			var endPos = myField.selectionEnd;
-			myField.value = myField.value.substring(0, startPos) + myValue
-					+ myField.value.substring(endPos, myField.value.length);
-		} else {
-			myField.value += myValue;
-		}
-	}
-</script>
-
-
-<script type="text/javascript">
-	var getCharPosition = (function() {
-
-		function getSel() {
-			var sel = null;
-			if (typeof document.selection != "undefined" && document.selection
-					&& document.selection.type == "Text") {
-				sel = document.selection;
-			} else if (window.getSelection
-					&& window.getSelection().rangeCount > 0) {
-				sel = window.getSelection();
-			}
-			return sel;
-		}
-
-		function createRangeFromSel(sel) {
-			var rng = null;
-			if (sel.createRange) {
-				rng = sel.createRange();
-			} else if (sel.getRangeAt) {
-				rng = sel.getRangeAt(0);
-				if (rng.toString() == "")
-					rng = null;
-			}
-			return rng;
-		}
-
-		return function(el) {
-			var sel = getSel(), rng, r2, i = -1;
-			if (sel) {
-				rng = createRangeFromSel(sel);
-				if (rng) {
-
-					if (rng.parentElement) {
-						if (rng.parentElement() == el) {
-							r2 = document.body.createTextRange();
-							r2.moveToElementText(el);
-							r2.collapse(true);
-							r2.setEndPoint("EndToStart", rng);
-							i = r2.text.length;
-						}
-					} else {
-						if (rng.startContainer
-								&& rng.endContainer
-								&& rng.startContainer == rng.endContainer
-								&& rng.startContainer == rng.commonAncestorContainer
-								&& rng.commonAncestorContainer.parentNode == el) {
-
-							//make sure your DIV does not have any inner element,
-							//otherwise more code is required in order to filter
-							//text nodes and count chars
-
-							i = rng.startOffset;
-						}
-					}
-				}
-			}
-			return i;
-		};
-
-	})();
-
-	function prepare(el) {
-		if (el.normalize) {
-			el.normalize();
-		}
-	}
-	function ket4ko2tshah4ji7(ji7) {
-		var newNode = document.createTextNode(ji7);
-		huan7ui5.deleteContents();
-		huan7ui5.insertNode(newNode);
-		huan7ui5.setStartAfter(newNode);
-		huan7ui5.setEndAfter(newNode);
-	}
-</script>
-<script type="text/javascript">
-	function getInputSelection(el) {
-		var start = 0, end = 0, normalizedValue, range, textInputRange, len, endRange;
-
-		if (typeof el.selectionStart == "number"
-				&& typeof el.selectionEnd == "number") {
-			start = el.selectionStart;
-			end = el.selectionEnd;
-		} else {
-			range = document.selection.createRange();
-
-			if (range && range.parentElement() == el) {
-				len = el.value.length;
-				normalizedValue = el.value.replace(/\r\n/g, "\n");
-
-				// Create a working TextRange that lives only in the input
-				textInputRange = el.createTextRange();
-				textInputRange.moveToBookmark(range.getBookmark());
-
-				// Check if the start and end of the selection are at the very end
-				// of the input, since moveStart/moveEnd doesn't return what we want
-				// in those cases
-				endRange = el.createTextRange();
-				endRange.collapse(false);
-
-				if (textInputRange.compareEndPoints("StartToEnd", endRange) > -1) {
-					start = end = len;
-				} else {
-					start = -textInputRange.moveStart("character", -len);
-					start += normalizedValue.slice(0, start).split("\n").length - 1;
-
-					if (textInputRange.compareEndPoints("EndToEnd", endRange) > -1) {
-						end = len;
-					} else {
-						end = -textInputRange.moveEnd("character", -len);
-						end += normalizedValue.slice(0, end).split("\n").length - 1;
-					}
-				}
-			}
-		}
-
-		return {
-			start : start,
-			end : end
-		};
-	}
-
-	function offsetToRangeCharacterMove(el, offset) {
-		return offset - (el.value.slice(0, offset).split("\r\n").length - 1);
-	}
-
-	function setInputSelection(el, startOffset, endOffset) {
-		if (typeof el.selectionStart == "number"
-				&& typeof el.selectionEnd == "number") {
-			el.selectionStart = startOffset;
-			el.selectionEnd = endOffset;
-		} else {
-			var range = el.createTextRange();
-			var startCharMove = offsetToRangeCharacterMove(el, startOffset);
-			range.collapse(true);
-			if (startOffset == endOffset) {
-				range.move("character", startCharMove);
-			} else {
-				range.moveEnd("character", offsetToRangeCharacterMove(el,
-						endOffset));
-				range.moveStart("character", startCharMove);
-			}
-			range.select();
-		}
-	}
-	function addTextonInputSelection(field, value) {
-		var sel = getInputSelection(field);
-		//field.value = 'some_new_value';
-		insertAtCursor(field, value)
-		field.focus();
-		setInputSelection(field, sel.start + 1, sel.end + 1);
-	}
-</script>
-<script type="text/javascript">
-	function kiam2tsa1(textInput) {
-		//alert(textInput.value);
-		var num = 0;
-		var i = 0;
-		for (; i < textInput.value.length && num < 1; ++i) {
-			if (si7tsoo2hap8bo5(textInput.value[i])) {
-				num--;
-			} else {
-				num++;
-			}
-		}
-		//alert(i);
-		if (i != textInput.value.length) {
-			//ket4ko2.focus();
-			var tshah4 = textInput.value.substring(0, i);
-			var tshun1 = textInput.value.substring(i);
-			textInput.value = tshun1;
-			//alert(tshah4);
-			ket4ko2tshah4ji7(tshah4);
-			//ki3lok8huan7ui5();
-			//textInput.focus();
-			kiam2tsa1(textInput);
-		}
-		var piau5si7too5 = textInput.value;
-		if (num < 1) {
-			piau5si7too5 += '■';
-			num++;
-		}
-		while (num < 1) {
-			piau5si7too5 += '□';
-			num++;
-		}
-		var uan5too5 = piau5si7too5.replace('■', '□');
-		set4ting7too5(piau5si7too5, uan5too5);
-	}
-</script>
-<script type="text/javascript">
-	
-</script>
+<script type="text/javascript" src="suann3ting2su1jip8huat4.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="suann3ting2su1jip8huat4.css">
 
 </head>
-<body onload="javascript:it4khai1si2()">
-	<img id="hian2si7too5it4" height="48px" width="48px" />
-	<img id="hian2si7too5ji7" height="48px" width="48px" />﻿
+<body onload="javascript:tsit8khai1si2()">
+	<img id="hian2si7too5it4" />
+	<img id="hian2si7too5ji7" />﻿
 	<form name="myform" class="aacxc">
-		Type anything you like: <input type="text" name="typing" id="su1jip8"
-			value="XDD2" onChange=""
-			onkeyup="kiam2tsa1(this);	document.myform.haha.value=(this.value) ;"
-			onkeydown="kiam2tsa1(this);document.myform.haha2.value=(this.value) ;"
-			onPaste="alert('2') ; this.select()"
-			oncut="alert('2') ; this.select()" oninput=""> <input
-			name="haha" type="button" value="Click me to see what you have typed"
+		Type anything you like: <input type="text" id="su1jip8" onChange=""
+			onkeyup="kiam2tsa1();"
+			onkeydown="kiam2tsa1();document.myform.haha2.value=(this.value) ;"
+			onPaste="kiam2tsa1()" oncut="kiam2tsa1()" oninput="kiam2tsa1()">
+		<input name="haha" type="button"
+			value="Click me to see what you have typed"
 			onClick="alert(this.form.typing.value)"> <input name="haha2"
 			type="text" value="Click me to see what you have typed"
 			onClick="alert(this.form.typing.value)"> <input name="D"
@@ -280,9 +27,9 @@
 			name="E" type="button" value="E"
 			onclick="javascript:addTextonInputSelection(su1jip8,'E')"> <input
 			name="⿰" type="button" value="⿰"
-			onclick="javascript:addTextonInputSelection(su1jip8,'⿰');kiam2tsa1(su1jip8);">
+			onclick="javascript:addTextonInputSelection(su1jip8,'⿰');kiam2tsa1();">
 		<input name="⿱" type="button" value="⿱"
-			onclick="javascript:addTextonInputSelection(su1jip8,'⿱');kiam2tsa1(su1jip8);">
+			onclick="javascript:addTextonInputSelection(su1jip8,'⿱');kiam2tsa1();">
 	</form>
 	<a href="javascript:tshue7tsoo2ji7(ket4ko2)">X!!!!!D</a>
 	<a href="javascript:pian3tng2tsoo2ji7sik4()">X@@D</a>
@@ -293,17 +40,15 @@
 	<br />
 	<br /> onmouseup="alert(getCharPosition(this));"
 	onmousedown="prepare(this)"
-	<div id="ket4ko2" contenteditable="true"
-		ondragleave="ki3lok8huan7ui5();alert('leave')"
-		ondragend="ki3lok8huan7ui5();alert('over')" onchange="alert('change')"
-		onended="alert('endded')" onseeking="alert('seeking')"
-		onseeked="alert('seekede')" onfocus="ki3lok8huan7ui5();"
+	ondragleave="ki3lok8huan7ui5();alert('leave')"
+	ondragend="ki3lok8huan7ui5();alert('over')" onchange="alert('change')"
+	onended="alert('endded')" onseeking="alert('seeking')"
+	onseeked="alert('seekede')"
+	<div id="ket4ko2" contenteditable="true" onfocus="ki3lok8huan7ui5();"
 		onkeyup="ki3lok8huan7ui5();" onmouseout="ki3lok8huan7ui5();"
-		onmouseover="ki3lok8huan7ui5();" style="border: 1px solid #000000">
+		onmouseover="ki3lok8huan7ui5();">
 		sd你好sssZsZaas一三四變<font face="全字庫正楷體">變</font><font face="全字庫正宋體">變</font>⿱⿰⿰糹言糹攵⿰矛⿱攵力變<b>變⿱木⿰木木森s
 		</b><a href=".">X<b>D</b></a><br />
 	</div>
-	<textarea>XDD</textarea>
-
 </body>
 </html>
