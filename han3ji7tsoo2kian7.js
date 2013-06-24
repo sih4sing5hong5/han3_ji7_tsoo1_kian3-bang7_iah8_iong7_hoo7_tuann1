@@ -1,3 +1,5 @@
+var tsoo2ji7ting5sik4='http://175.41.157.247/aa/';
+
 function tsoo2han3ji7(beh4tshu2li2bo5) {
 	tshue7tsoo2ji7(document.getElementsByTagName('body')[0],beh4tshu2li2bo5);
 }
@@ -66,7 +68,7 @@ function ka7ji7uann7tiau7(textNode, fontFamily, fontSize, fontWeight,beh4tshu2li
 			var tsoo2ji3 = textNode.nodeValue.substring(middle, end);
 			var img = document.createElement('img');
 			img.setAttribute('class', 'tsoo2ji3');
-			img.setAttribute('src', 'http://localhost:8080/' + ji7the2 + '/'
+			img.setAttribute('src', tsoo2ji7ting5sik4 + ji7the2 + '/'
 					+ tsoo2ji3 + '.png');
 			img.setAttribute('alt', tsoo2ji3);
 			img.setAttribute('title', tsoo2ji3);
