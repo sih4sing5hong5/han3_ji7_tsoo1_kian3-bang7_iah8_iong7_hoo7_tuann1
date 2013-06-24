@@ -68,6 +68,24 @@ function kiam2tsa1() {
 	var uan5too5 = piau5si7too5.replace(oo1, beh8);
 	set4ting7too5(piau5si7too5, uan5too5);
 }
+function sang3tsut4su1jip8() {
+	var num = 0;
+	var i = 0;
+	for (; i < su1jip8.value.length && num < 1; ++i) {
+		if (si7tsoo2hap8bo5(su1jip8.value[i])) {
+			num--;
+		} else {
+			num++;
+		}
+	}
+	if (num == 1) {
+		var tshah4 = su1jip8.value.substring(0, i);
+		var tshun1 = su1jip8.value.substring(i);
+		su1jip8.value = tshun1;
+		ket4ko2tshah4ji7(tshah4);
+		sang3tsut4su1jip8();
+	}
+}
 function ket4ko2tshah4ji7(ji7) {
 	var newNode = document.createTextNode(ji7);
 	huan7ui5.deleteContents();
