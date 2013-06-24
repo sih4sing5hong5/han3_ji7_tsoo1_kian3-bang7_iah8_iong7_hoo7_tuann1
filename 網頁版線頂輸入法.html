@@ -6,13 +6,15 @@
 
 <script type="text/javascript">
 	var su1jip8, ket4ko2;
-	var huan7ui5 ;
+	var huan7ui5;
 	function it4khai1si2() {
 		su1jip8 = document.getElementById('su1jip8');
 		ket4ko2 = document.getElementById('ket4ko2');
 		ket4ko2.focus();
 		ki3lok8huan7ui5();
 		su1jip8.focus();
+		set4ting7too5(' ', ' ');
+		setInterval("hian2si7too5()", 500);
 	}
 	function ki3lok8huan7ui5() {
 		var sin1huan7ui5 = window.getSelection().getRangeAt(0);
@@ -23,6 +25,23 @@
 		if (sin1huan7ui5.startContainer.id == 'ket4ko2'
 				|| sin1huan7ui5.startContainer.parentNode.id == 'ket4ko2')
 			huan7ui5 = sin1huan7ui5;
+	}
+	function set4ting7too5(te7it4e5too5, te7ji7e5too5) {
+		var too5it4 = document.getElementById("hian2si7too5it4");
+		var too5ji7 = document.getElementById("hian2si7too5ji7");
+		too5it4.src = tsoo2ji7ting5sik4 + '宋體/' + te7it4e5too5 + '.png';
+		too5ji7.src = tsoo2ji7ting5sik4 + '宋體/' + te7ji7e5too5 + '.png';
+	}
+	function hian2si7too5() {
+		var too5it4 = document.getElementById("hian2si7too5it4");
+		var too5ji7 = document.getElementById("hian2si7too5ji7");
+		if (too5it4.style.display == "none") {
+			too5it4.style.display = "block";
+			too5ji7.style.display = "none";
+		} else {
+			too5ji7.style.display = "block";
+			too5it4.style.display = "none";
+		}
 	}
 </script>
 
@@ -115,11 +134,11 @@
 		}
 	}
 	function ket4ko2tshah4ji7(ji7) {
-			var newNode = document.createTextNode(ji7);
-			huan7ui5.deleteContents();
-			huan7ui5.insertNode(newNode);
-			huan7ui5.setStartAfter(newNode);
-			huan7ui5.setEndAfter(newNode);
+		var newNode = document.createTextNode(ji7);
+		huan7ui5.deleteContents();
+		huan7ui5.insertNode(newNode);
+		huan7ui5.setStartAfter(newNode);
+		huan7ui5.setEndAfter(newNode);
 	}
 </script>
 <script type="text/javascript">
@@ -234,27 +253,17 @@
 			num++;
 		}
 		var uan5too5 = piau5si7too5.replace('■', '□');
-		te7it4e5ji7too5 = uan5too5;
-		te7ji7e5ji7too5 = piau5si7too5;
-		//alert(piau5si7too5 + " " + uan5too5);
-
+		set4ting7too5(piau5si7too5, uan5too5);
 	}
 </script>
 <script type="text/javascript">
-	var te7it4e5ji7too5 = ' ', te7ji7e5ji7too5 = ' ';
-	function hian2si7too5() {
-		var too5 = document.getElementById("hian2si7");
-		too5.src = tsoo2ji7ting5sik4+'宋體/' + te7it4e5ji7too5 + '.png';
-		var tsiam7si5 = te7it4e5ji7too5;
-		te7it4e5ji7too5 = te7ji7e5ji7too5;
-		te7ji7e5ji7too5 = tsiam7si5;
-	}
-	setInterval("hian2si7too5()", 500);
+	
 </script>
 
 </head>
 <body onload="javascript:it4khai1si2()">
-	<img id="hian2si7" height="48px" width="48px" />﻿
+	<img id="hian2si7too5it4" height="48px" width="48px" />
+	<img id="hian2si7too5ji7" height="48px" width="48px" />﻿
 	<form name="myform" class="aacxc">
 		Type anything you like: <input type="text" name="typing" id="su1jip8"
 			value="XDD2" onChange=""
