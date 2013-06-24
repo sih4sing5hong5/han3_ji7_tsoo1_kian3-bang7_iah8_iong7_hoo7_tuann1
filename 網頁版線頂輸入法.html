@@ -94,8 +94,18 @@
 	document.getElementById('ket4ko2').focus();
 	huan7ui5 = window.getSelection().getRangeAt(0);
 	function save() {
-	//	document.getElementById('su1jip8').value += 'a';
-		huan7ui5 = window.getSelection().getRangeAt(0);
+
+		//	document.getElementById('su1jip8').value += 'a';
+		var sin1huan7ui5 = window.getSelection().getRangeAt(0);
+
+		//alert("t1="+sin1huan7ui5.startContainer.parentNode.tagName);
+		//alert("t2="+sin1huan7ui5.startContainer.parentNode.id);
+		//alert("t3="+sin1huan7ui5.startContainer.tagName);
+		//alert("t4="+sin1huan7ui5.startContainer.id);
+		if (sin1huan7ui5.startContainer.id == 'ket4ko2'
+				|| sin1huan7ui5.startContainer.parentNode.id == 'ket4ko2')
+			huan7ui5 = sin1huan7ui5;//window.getSelection().getRangeAt(0);
+
 	}
 	function aa(ji7) {
 		//alert(document.selection);
@@ -125,7 +135,7 @@
 			range.insertNode(newNode);
 			range.setStartAfter(newNode);
 			range.setEndAfter(newNode);
-//save();
+			//save();
 		}
 	}
 </script>
@@ -203,7 +213,8 @@
 		var sel = getInputSelection(field);
 		//field.value = 'some_new_value';
 		insertAtCursor(field, value)
-		setInputSelection(field, sel.start, sel.end);
+		field.focus();
+		setInputSelection(field, sel.start + 1, sel.end + 1);
 	}
 </script>
 <script type="text/javascript">
@@ -228,19 +239,45 @@
 			aa(tshah4);
 			//save();
 			//textInput.focus();
+			kiam2tsa1(textInput);
 		}
+		var piau5si7too5 = textInput.value;
+		if (num < 1) {
+			piau5si7too5 += '■';
+			num++;
+		}
+		while (num < 1) {
+			piau5si7too5 += '□';
+			num++;
+		}
+		var uan5too5 = piau5si7too5.replace('■', '□');
+		te7it4e5ji7too5=uan5too5;te7ji7e5ji7too5=piau5si7too5;
+		//alert(piau5si7too5 + " " + uan5too5);
+
 	}
+	</script>
+	<script type="text/javascript">
+	var te7it4e5ji7too5=' ',te7ji7e5ji7too5=' ';
+	function hian2si7too5()
+	{
+		var too5=document.getElementById("hian2si7");
+		too5.src='http://localhost:8080/宋體/'+te7it4e5ji7too5+'.png';
+		var tsiam7si5=te7it4e5ji7too5;
+		te7it4e5ji7too5=te7ji7e5ji7too5;
+		te7ji7e5ji7too5=te7ji7e5ji7too5;
+	}
+	setInterval("hian2si7too5()",500);
 </script>
 
 </head>
 <body
 	onload="javascript:document.getElementById('ket4ko2').focus();save();javascript:document.getElementById('su1jip8').focus()">
-	﻿
-	<form name="myform">
+	<img id="hian2si7" height="48px" width="48px" />﻿
+	<form name="myform" class="aacxc">
 		Type anything you like: <input type="text" name="typing" id="su1jip8"
 			value="XDD2" onChange=""
 			onkeyup="kiam2tsa1(this);	document.myform.haha.value=(this.value) ;"
-			onkeydown="document.myform.haha2.value=(this.value) ;"
+			onkeydown="kiam2tsa1(this);document.myform.haha2.value=(this.value) ;"
 			onPaste="alert('2') ; this.select()"
 			oncut="alert('2') ; this.select()" oninput=""> <input
 			name="haha" type="button" value="Click me to see what you have typed"
@@ -252,9 +289,9 @@
 		<input name="E" type="button" value="E"
 			onclick="javascript:addTextonInputSelection(document.getElementById('su1jip8'),'E')">
 		<input name="⿰" type="button" value="⿰"
-			onclick="javascript:addTextonInputSelection(document.getElementById('su1jip8'),'⿰')">
+			onclick="javascript:addTextonInputSelection(document.getElementById('su1jip8'),'⿰');kiam2tsa1(this);">
 		<input name="⿱" type="button" value="⿱"
-			onclick="javascript:addTextonInputSelection(document.getElementById('su1jip8'),'⿱')；document.getElementById('su1jip8').focus()">
+			onclick="javascript:addTextonInputSelection(document.getElementById('su1jip8'),'⿱');kiam2tsa1(this);">
 	</form>
 	<a href="javascript:tshue7tsoo2ji7(document.getElementById('ket4ko2'))">X!!!!!D</a>
 	<a href="javascript:pian3tng2tsoo2ji7sik4()">X@@D</a>
