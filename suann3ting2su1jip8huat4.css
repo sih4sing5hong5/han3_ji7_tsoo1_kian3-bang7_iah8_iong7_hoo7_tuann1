@@ -1,7 +1,10 @@
+#too5tsip8{
+	vertical-align: center;text-align: center;
+}
 #hian2si7too5it4,#hian2si7too5ji7 {
-	height:48px;
-	width:48px;
-	border: 1px solid #000000
+	height: 4em;
+	width: 4em;
+	border: 1px solid #000000;
 }
 
 #hian2si7too5it4 {
@@ -13,5 +16,6 @@
 }
 
 #ket4ko2 {
-	border: 1px solid #000000
+	border: 1px solid #000000;
+	min-height: 10em;
 }

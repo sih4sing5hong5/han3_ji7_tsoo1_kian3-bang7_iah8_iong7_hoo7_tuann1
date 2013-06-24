@@ -1,12 +1,15 @@
 var su1jip8, ket4ko2;
 var huan7ui5;
+var oo1, beh8;
 function tsit8khai1si2() {
 	su1jip8 = document.getElementById('su1jip8');
 	ket4ko2 = document.getElementById('ket4ko2');
+	oo1 = '■';
+	beh8 = '□';
 	ket4ko2.focus();
 	ki3lok8huan7ui5();
 	su1jip8.focus();
-	set4ting7too5(' ', ' ');
+	kiam2tsa1();
 	setInterval("hian2si7too5()", 500);
 }
 function ki3lok8huan7ui5() {
@@ -55,14 +58,14 @@ function kiam2tsa1() {
 	}
 	var piau5si7too5 = su1jip8.value;
 	if (num < 1) {
-		piau5si7too5 += '■';
+		piau5si7too5 += oo1;
 		num++;
 	}
 	while (num < 1) {
-		piau5si7too5 += '□';
+		piau5si7too5 += beh8;
 		num++;
 	}
-	var uan5too5 = piau5si7too5.replace('■', '□');
+	var uan5too5 = piau5si7too5.replace(oo1, beh8);
 	set4ting7too5(piau5si7too5, uan5too5);
 }
 function ket4ko2tshah4ji7(ji7) {
@@ -166,4 +169,5 @@ function addTextonInputSelection(field, value) {
 	insertAtCursor(field, value);
 	field.focus();
 	setInputSelection(field, sel.start + 1, sel.end + 1);
+	kiam2tsa1();
 }
