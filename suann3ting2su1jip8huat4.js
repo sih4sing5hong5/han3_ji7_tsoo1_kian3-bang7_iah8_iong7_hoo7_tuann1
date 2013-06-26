@@ -49,13 +49,13 @@ function kiam2tsa1() {
 			num++;
 		}
 	}
-	if (i != su1jip8.value.length) {
+/*	if (i != su1jip8.value.length) {
 		var tshah4 = su1jip8.value.substring(0, i);
 		var tshun1 = su1jip8.value.substring(i);
 		su1jip8.value = tshun1;
 		ket4ko2tshah4ji7(tshah4);
 		kiam2tsa1();
-	}
+	}*/
 	var piau5si7too5 = su1jip8.value;
 	if (num < 1) {
 		piau5si7too5 += oo1;
@@ -85,6 +85,7 @@ function sang3tsut4su1jip8() {
 		ket4ko2tshah4ji7(tshah4);
 		sang3tsut4su1jip8();
 	}
+	tshue7tsoo2ji7(ket4ko2);
 }
 function ket4ko2tshah4ji7(ji7) {
 	var newNode = document.createTextNode(ji7);
@@ -186,6 +187,6 @@ function addTextonInputSelection(field, value) {
 	var sel = getInputSelection(field);
 	insertAtCursor(field, value);
 	field.focus();
-	setInputSelection(field, sel.start + 1, sel.end + 1);
+	setInputSelection(field, sel.start + value.length, sel.end +  value.length);
 	kiam2tsa1();
 }
