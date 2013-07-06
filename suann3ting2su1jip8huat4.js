@@ -10,7 +10,7 @@ function tsit8khai1si2() {
 	ki3lok8huan7ui5();
 	su1jip8.focus();
 	kiam2tsa1();
-	setInterval("hian2si7too5()", 500);
+	setInterval("hian2si7too5()", 1000);
 }
 function ki3lok8huan7ui5() {
 	var sin1huan7ui5 = window.getSelection().getRangeAt(0);
