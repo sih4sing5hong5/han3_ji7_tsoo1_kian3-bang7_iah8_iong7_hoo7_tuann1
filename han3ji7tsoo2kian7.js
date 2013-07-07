@@ -1,7 +1,7 @@
-var tsoo2ji7ting5sik4='http://意傳.台灣/組字/';
+var tsoo2ji7ting5sik4 = 'http://意傳.台灣/組字/';
 
 function tsoo2han3ji7(beh4tshu2li2bo5) {
-	tshue7tsoo2ji7(document.getElementsByTagName('body')[0],beh4tshu2li2bo5);
+	tshue7tsoo2ji7(document.getElementsByTagName('body')[0], beh4tshu2li2bo5);
 }
 function long2ai2tshu2li2(ji7) {
 	return true;
@@ -32,11 +32,11 @@ function tshue7tsoo2ji7(element, beh4tshu2li2bo5) {
 
 			if (targetNode.nodeType === ELEMENT_NODE) {
 				if (targetNode.nodeName != 'SCRIPT') {
-					tshue7tsoo2ji7(targetNode,beh4tshu2li2bo5);
+					tshue7tsoo2ji7(targetNode, beh4tshu2li2bo5);
 				}
 			} else if (targetNode.nodeType === TEXT_NODE) {
 				var newArray = ka7ji7uann7tiau7(targetNode, fontFamily,
-						fontSize, fontWeight,beh4tshu2li2bo5);
+						fontSize, fontWeight, beh4tshu2li2bo5);
 				if (newArray.length > 0) {
 					for ( var j = 0; j < newArray.length; ++j)
 						element.insertBefore(newArray[j], targetNode);
@@ -47,7 +47,8 @@ function tshue7tsoo2ji7(element, beh4tshu2li2bo5) {
 		}
 	}
 }
-function ka7ji7uann7tiau7(textNode, fontFamily, fontSize, fontWeight,beh4tshu2li2bo5) {
+function ka7ji7uann7tiau7(textNode, fontFamily, fontSize, fontWeight,
+		beh4tshu2li2bo5) {
 	var ji7the2 = kuah4tin7ji7the2(fontFamily, fontWeight);
 	var newArray = new Array();
 	var start = 0;
@@ -69,7 +70,7 @@ function ka7ji7uann7tiau7(textNode, fontFamily, fontSize, fontWeight,beh4tshu2li
 			var img = document.createElement('img');
 			img.setAttribute('class', 'tsoo2ji3');
 			img.setAttribute('src', tsoo2ji7ting5sik4 + ji7the2 + '/'
-					+ tsoo2ji3 + '.png');
+					+ tiau5tsing2tsoo2ji7sik4(tsoo2ji3) + '.png');
 			img.setAttribute('alt', tsoo2ji3);
 			img.setAttribute('title', tsoo2ji3);
 			img.setAttribute('height', fontSize);
@@ -111,4 +112,7 @@ function pian3tng2tsoo2ji7sik4() {
 		var parent = tsoo2ji7too5[i].parentNode;
 		parent.replaceChild(bun5ji7, tsoo2ji7too5[i]);
 	}
+}
+function tiau5tsing2tsoo2ji7sik4(tsoo2ji7sik4) {
+	return tsoo2ji7sik4.replace(/\u00a0/g, ' ');
 }
